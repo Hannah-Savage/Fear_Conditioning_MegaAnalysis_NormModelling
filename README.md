@@ -1,6 +1,7 @@
 # Fear_Conditioning_MegaAnalysis_NormModelling
 
 This repository contains code for the (forthcoming) manuscript titled: 
+**_Neural Correlates of Human Fear Conditioning and Sources of Variability: A Mega-Analysis and Normative Modeling Study of fMRI Data from 2,199 Individuals_**
 
 ## CODE:
 ### Mega-Analysis Code:
