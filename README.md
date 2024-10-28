@@ -4,8 +4,13 @@ This repository contains code for the (forthcoming) manuscript titled:
 **_Neural Correlates of Human Fear Conditioning and Sources of Variability: A Mega-Analysis and Normative Modeling Study of fMRI Data from 2,199 Individuals_**
 
 ## CODE:
-### Mega-Analysis Code:
+### STAI harmonization:
+Harmonization of STAI scores across countries using combat.enigma version 1.1.1 (https://CRAN.R-project.org/package=combat.enigma):
+* r_codes/stai_harmonization.R
 
+### Mega-Analysis Code:
+Mega-analysis using combat.enigma version 1.1.1 (https://CRAN.R-project.org/package=combat.enigma). Note that most of the code developed for this project was included in the combat.enigma R package as simple functions for other groups to use, and r_codes/mega_analysis.R only includes the calls to these functions. The contents of the package are fully available at https://cran.r-project.org/src/contrib/combat.enigma_1.1.1.tar.gz
+* r_codes/mega_analysis.R
 
 
 ### Normative Modelling Code:
