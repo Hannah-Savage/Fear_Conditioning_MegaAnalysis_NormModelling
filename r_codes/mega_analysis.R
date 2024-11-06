@@ -23,8 +23,8 @@ prescale_controls = prescale_fit(
 )
 
 ################################################################################
-# Find prescaling factors based on patients. These factors will be discarded   #
-# (because we prefer those from controls) except for a site with only patients #
+# Find prescaling factors based on patients. They will be discarded (because   #
+# we prefer those from controls) except for one site with only patients        #
 ################################################################################
 prescale_patients = prescale_fit(
   dat = dat[,i_patients],
@@ -102,12 +102,13 @@ writeNIfTI(nifti, "gitHubCode_mega_analysis/instructions_z")
 ################################################################################
 # Fit linear mixed-effects models: multinomial variables -e.g., reinf. rate-   #
 ################################################################################
+i_controls_rr = which(X$patient == 0 & !is.na(X$reinf_rate50))
 results = lmm_fit(
-  dat = dat_prescaled[,i_controls],
-  site = factor(X$site[i_controls]),
-  cov = cbind(X$reinf_rate50, X$reinf_rate80, X$age, X$sex)[i_controls,],
-  lin.hyp = matrix(c(0,1,0,0,0, 0,0,1,0,0), nrow = 2, byrow = TRUE),
-  n.min = 9, impute_missing_cov = TRUE, prescaling = FALSE
+  dat = dat[,i_controls_rr],
+  site = factor(X$site[i_controls_rr]),
+  cov = cbind(X$reinf_rate50, X$reinf_rate62, X$reinf_rate100, X$age, X$sex)[i_controls_rr,],
+  lin.hyp = matrix(c(0,1,0,0,0,0, 0,0,1,0,0,0, 0,0,0,1,0,0), nrow = 3, byrow = TRUE),
+  n.min = 9, impute_missing_cov = TRUE, prescaling = TRUE
 )
 nifti[] = results$lin.hyp_chisq_map
 writeNIfTI(nifti, "gitHubCode_mega_analysis/reinf_rate_chisq")
